@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:project_smarthomeui/utils/smart_devices_box.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,21 +63,44 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text("Welcome To "),
+                children: [
+                  Text(
+                    "Welcome To, ",
+                    style: GoogleFonts.abel(
+                      fontSize: 20,
+                    ),
+                  ),
                   Text(
                     "Room Number Three",
-                    style: TextStyle(fontSize: 30),
+                    style: GoogleFonts.bebasNeue(
+                      fontSize: 40,
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+
+            const SizedBox(height: 30),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: Divider(
+                color: Colors.black,
+              ),
+            ),
             // ITEM GRID// SMART IMAGES
             Padding(
               padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-              child: const Text("Smart Appliances"),
+              child: Text(
+                "Smart Appliances",
+                style: GoogleFonts.abel(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
+            // SizedBox(
+            //   height: 30,
+            // ),
             Expanded(
               child: GridView.builder(
                   itemCount: mySmartDevices.length,
