@@ -15,11 +15,18 @@ class _HomePageState extends State<HomePage> {
   // LIST OF SMART DEVICES
   List mySmartDevices = [
     //[smartDevices, iconPath, powerStatus]
+    ["Smart Fan", "lib/icons/fan.png", false],
     ["Smart Light", "lib/icons/light-bulb.png", true],
     ["Smart TV ", "lib/icons/smart-tv.png", false],
     ["Smart AC", "lib/icons/air-conditioner.png", false],
-    ["Smart Fan", "lib/icons/fan.png", false],
   ];
+  //POWER BUTTON SWITCH
+  void powerSwitchChanged(bool value, int index) {
+    setState(() {
+      mySmartDevices[index][2] = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,15 +75,21 @@ class _HomePageState extends State<HomePage> {
             // ITEM GRID// SMART IMAGES
             Padding(
               padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-              child: Text("Smart Appliances"),
+              child: const Text("Smart Appliances"),
             ),
             Expanded(
               child: GridView.builder(
                   itemCount: mySmartDevices.length,
+                  padding: const EdgeInsets.all(25.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
+                      crossAxisCount: 2, childAspectRatio: 1 / 1.2),
                   itemBuilder: (context, index) {
-                    return Container(); //SmartDeviceBox(smartDevicesName: '',);
+                    return SmartDeviceBox(
+                      smartDevicesName: mySmartDevices[index][0],
+                      iconPath: mySmartDevices[index][1],
+                      powerOn: mySmartDevices[index][2],
+                      onChanged: (value) => powerSwitchChanged(value, index),
+                    ); //SmartDeviceBox(smartDevicesName: '',);
                   }),
             )
           ],
